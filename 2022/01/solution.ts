@@ -34,7 +34,7 @@ function partTwo() {
   let elve = 0;
   input
     .split("\n")
-    .map((calory) => Number(calory))
+    .map(Number)
     .forEach((calory) => {
       elve += calory;
       if (calory === 0) {
