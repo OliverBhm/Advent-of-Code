@@ -28,20 +28,23 @@ function partOne() {
 }
 
 function partTwo() {
-  let accumulator: number = 0;
-  return elvesCalories
-    .trim()
+  const lowest = Number.NEGATIVE_INFINITY;
+  let top = [lowest, lowest, lowest];
+
+  let elve = 0;
+  input
     .split("\n")
     .map((calory) => Number(calory))
-    .reduce((accu, calory) => {
-      accumulator += calory;
+    .forEach((calory) => {
+      elve += calory;
       if (calory === 0) {
-        accu.push(accumulator);
-        accumulator = 0;
+        if (elve > top[0]) {
+          top[0] = elve;
+          top.sort((a, b) => a - b);
+        }
+        elve = 0;
       }
-      return accu;
-    }, [])
-    .sort((a, b) => a - b)
-    .slice(-3)
-    .reduce((accu, elve) => accu + elve);
+    });
+
+  return top[0] + top[1] + top[2];
 }
