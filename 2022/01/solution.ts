@@ -1,4 +1,4 @@
-function mostCalories() {
+function partTwo() {
   const input: string = fs
     .readFileSync(__dirname + "/input.txt", "utf-8")
     .trim();
