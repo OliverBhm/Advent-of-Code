@@ -2,7 +2,11 @@ import { getInput } from "../input.js";
 
 const input: Array<number> = getInput().map(Number);
 
-export function partOne() {
+/**
+ * Part 1, get the elve carrying the most calories.
+ * @returns 
+ */
+export function topElve() {
   let most = 0;
 
   let elve = 0;
@@ -17,7 +21,11 @@ export function partOne() {
   return most;
 }
 
-function partTwo() {
+/**
+ * Part 2 Get the top three elves carrying the most calories
+ * @returns 
+ */
+function getTopThreeElves() {
   const lowest = Number.NEGATIVE_INFINITY;
   let top = [lowest, lowest, lowest];
 
