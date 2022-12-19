@@ -2,6 +2,9 @@ import { getInput } from "../input.js";
 
 const input: Array<string> = getInput()
 
+const getPriority = (char: string): number =>  char.charCodeAt(0) -
+            (char.toLowerCase() === char ? 96 : 38);
+
 function getItemSum(): number {
     let total: number = 0;
   
@@ -11,9 +14,7 @@ function getItemSum(): number {
   
       for (let i: number = half; i < items.length; i++) {
         if (left.has(items[i])) {
-          total +=
-            items[i].charCodeAt(0) -
-            (items[i].toLowerCase() === items[i] ? 96 : 38);
+          total += getPriority(items[i])
           break;
         }
       }
@@ -22,3 +23,23 @@ function getItemSum(): number {
     return total;
   }
   
+  function getBadgeTotal(): number {
+    let total = 0
+
+    const items = input.map(rucksack => rucksack.trim())
+
+    for(let i = 0; i < items.length; i += 3) {
+        const first = new Set(items[i])
+        const second = new Set(items[i + 1])
+
+        for(let j = 0; j < items[2].length; j++) {
+            const char: string = items[i + 2][j] 
+            if (first.has(char) && second.has(char)) {
+                total += getPriority(char) 
+                break
+            }
+        }
+    }
+
+    return total
+}
